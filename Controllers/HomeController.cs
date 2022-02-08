@@ -2,10 +2,10 @@
 using Intergration.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System; 
+using System;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Linq; 
+using System.Linq;
 
 namespace Intergration.Controllers
 {
@@ -25,18 +25,19 @@ namespace Intergration.Controllers
         public IActionResult Index(string code)
         {
             ViewBag.Code = code;
+
             return View(Search(code));
         }
         public CustomerDataViewModel Search(string code)
         {
             string connectionString =
-                "data source=196.221.38.200,1976;Initial Catalog=MPLDATA_NEW;user id=sa;password=P@ssw0rd20102002"; 
+                "data source=196.221.38.200,1976;Initial Catalog=MPLDATA_NEW;user id=sa;password=P@ssw0rd20102002";
             string queryString =
-                $"exec [KO_SHREQDETM_CC] '{code}'"; 
+                $"exec [KO_SHREQDETM_CC] '{code}'";
             using (SqlConnection connection =
                 new SqlConnection(connectionString))
-            { 
-                SqlCommand command = new SqlCommand(queryString, connection); 
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
 
                 CustomerDataViewModel cd = new CustomerDataViewModel();
                 try
@@ -66,6 +67,10 @@ namespace Intergration.Controllers
                 {
                     Console.WriteLine(ex.Message);
                 }
+                cd.CallComment = @"  هل العميل راضي عن المعمل ؟ 
+                             هل العميل له صلاحيات جميله ؟ 
+                             هل انت حد جميل ؟ 
+                             هل الجمال له ابعاد خاصه ؟ ";
                 return cd;
             }
         }
@@ -74,7 +79,7 @@ namespace Intergration.Controllers
             Customer dbCust = _db.Customers.FirstOrDefault(x => x.Code == model.ename);
 
             var item = _map.Map<Customer>(model);
-            if (dbCust ==null )
+            if (dbCust == null)
             {
                 _db.Customers.Add(item);
             }
