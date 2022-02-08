@@ -23,7 +23,7 @@ namespace Intergration.Controllers
             _map = map;
         }
 
-        public IActionResult Index( )
+        public IActionResult Index()
         {
              var data = _db.CallComments.Include(x => x.Customer).ToList();
             CustomerListViewModel model = new CustomerListViewModel()
@@ -31,8 +31,6 @@ namespace Intergration.Controllers
                 CallComments = data
             };
             return View(model);
-        }
-         
-
+        } 
     }
 }

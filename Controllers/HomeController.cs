@@ -2,12 +2,10 @@
 using Intergration.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
+using System; 
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Linq; 
 
 namespace Intergration.Controllers
 {
@@ -32,29 +30,14 @@ namespace Intergration.Controllers
         public CustomerDataViewModel Search(string code)
         {
             string connectionString =
-                "data source=196.221.38.200,1976;Initial Catalog=MPLDATA_NEW;user id=sa;password=P@ssw0rd20102002";
-            //data source = 192.168.1.5,1994; Initial Catalog = Wagon2022New; user id = sa; password = P@ssw0rd;
-
-            // Provide the query string with a parameter placeholder.
+                "data source=196.221.38.200,1976;Initial Catalog=MPLDATA_NEW;user id=sa;password=P@ssw0rd20102002"; 
             string queryString =
-                $"exec [KO_SHREQDETM_CC] '{code}'";
-
-            // Specify the parameter value.
-            //   int paramValue = 5;
-
-            // Create and open the connection in a using block. This
-            // ensures that all resources will be closed and disposed
-            // when the code exits.
+                $"exec [KO_SHREQDETM_CC] '{code}'"; 
             using (SqlConnection connection =
                 new SqlConnection(connectionString))
-            {
-                // Create the Command and Parameter objects.
-                SqlCommand command = new SqlCommand(queryString, connection);
+            { 
+                SqlCommand command = new SqlCommand(queryString, connection); 
 
-
-                // Open the connection in a try/catch block.
-                // Create and execute the DataReader, writing the result
-                // set to the console window.
                 CustomerDataViewModel cd = new CustomerDataViewModel();
                 try
                 {
