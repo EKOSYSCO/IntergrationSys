@@ -1,0 +1,40 @@
+﻿ 
+
+@model Intergration.Models.CustomerListViewModel
+<!--begin::Accordion-->
+<div class="row p-20">
+    <div class="col-2"></div>
+    <div class="col-8">
+
+        <table class="table table-rounded table-striped border gy-7 gs-7">
+            <thead>
+                <tr class="fw-bold fs-6 text-gray-800 border-bottom border-gray-200">
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Phone No.</th>
+                    <th>Comment</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @{foreach (var item in Model.CallComments)
+                    {
+                        <tr>
+                            <td>@item.Customer.Name</td>
+                            <td>@item.Customer.Code</td>
+                            <td>@item.Customer.Mobile</td>
+                            <td>@item.Comment</td>
+
+                        </tr>
+                    }
+                }
+
+
+            </tbody>
+        </table>
+
+
+    </div>
+    <div class="col-2"></div>
+
+</div>
